@@ -303,7 +303,7 @@ module Beaker
     # @param options [Hash{Symbol=>String}] Options to alter execution
     # @option options [Array<String>] :ignore An array of file/dir paths that will not be copied to the host
     def do_scp_to source, target, options
-      @logger.notify "localhost $ scp #{source} #{@name}:#{target} {:ignore => #{options[:ignore]}}"
+      @logger.notify "localhost $ scp -C -v #{source} #{@name}:#{target} {:ignore => #{options[:ignore]}}"
 
       result = Result.new(@name, [source, target])
       has_ignore = options[:ignore] and not options[:ignore].empty?
